@@ -1,0 +1,21 @@
+// schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model TickerData {
+  id       Int      @id @default(autoincrement())
+  datetime DateTime
+  open     Decimal  @db.Decimal(10, 2)
+  high     Decimal  @db.Decimal(10, 2)
+  low      Decimal  @db.Decimal(10, 2)
+  close    Decimal  @db.Decimal(10, 2)
+  volume   Int
+
+  @@index([datetime])
+}
